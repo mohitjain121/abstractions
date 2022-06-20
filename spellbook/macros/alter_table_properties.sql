@@ -146,7 +146,16 @@ ALTER TABLE uniswap_ethereum.trades SET TBLPROPERTIES('dune.public'='true',
 {% endset %}
 
 {% set seaport_ethereum_view_transactions %}
-ALTER TABLE seaport_ethereum.view_transactions SET TBLPROPERTIES('dune.public'='true',
+ALTER VIEW seaport_ethereum.view_transactions SET TBLPROPERTIES('dune.public'='true',
+                                                    'dune.data_explorer.blockchains'='["ethereum"]',
+                                                    'dune.data_explorer.category'='abstraction',
+                                                    'dune.data_explorer.abstraction.type'='project',
+                                                    'dune.data_explorer.abstraction.name'='seaport',
+                                                    'dune.data_explorer.contributors'='["sohawk","soispoke"]');
+{% endset %}
+
+{% set seaport_trades %}
+ALTER TABLE seaport.trades SET TBLPROPERTIES('dune.public'='true',
                                                     'dune.data_explorer.blockchains'='["ethereum"]',
                                                     'dune.data_explorer.category'='abstraction',
                                                     'dune.data_explorer.abstraction.type'='project',
@@ -170,6 +179,8 @@ ALTER TABLE seaport_ethereum.view_transactions SET TBLPROPERTIES('dune.public'='
 {% do run_query(transfers_ethereum_erc20) %}
 {% do run_query(tokens_ethereum_nft) %}
 {% do run_query(uniswap_ethereum_trades) %}
+{% do run_query(seaport_ethereum_view_transactions) %}
+{% do run_query(seaport_trades) %}
 
 {% do log("Tables generated", info=True) %}
 {%- else -%}

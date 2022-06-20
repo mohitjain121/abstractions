@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: seaport_trades
+    meta:
+      blockchain: ethereum
+      project: seaport
+      contributors: sohawk, soispoke
+    config:
+      tags: ['ethereum','seaport','trades']
+    description: >
+        Seaport trades on Ethereum
+    columns:
+      - name: unique_trade_id
+        description:  "Unique trade id, combination of tx_hash and trade_id"
+        tests:
+          - unique
+      - &blockchain
+        name: blockchain
+        description: "Blockchain"
+      - name: project
+        description: "Project"
+      - name: version
+        description: "Project version"
+      - name: tx_hash
+        description: "Transaction hash"
+      - name: block_time
+        description: "UTC event block time"
+      - name: token_symbol
+        description: "Token Symbol"
+      - name: token_address
+        description: "Token Address"
+      - name: amount
+        description: "Value of the trade at time of execution in the original currency"
+      - name: amount_usd
+        description:  "USD value of the trade at time of execution"

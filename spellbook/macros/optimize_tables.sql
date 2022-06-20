@@ -32,6 +32,10 @@ OPTIMIZE uniswap_ethereum.trades;
 OPTIMIZE nft.trades;
 {% endset %}
 
+{% set seaport_trades %}
+OPTIMIZE seaport.trades;
+{% endset %}
+
 
 {% do run_query(transfers_ethereum_erc20_agg_hour) %}
 {% do run_query(transfers_ethereum_erc20_agg_day) %}
@@ -41,6 +45,7 @@ OPTIMIZE nft.trades;
 {% do run_query(magiceden_trades) %}
 {% do run_query(uniswap_ethereum_trades) %}
 {% do run_query(nft_trades) %}
+{% do run_query(seaport_trades) %}
 
 {% do log("Tables Optimized", info=True) %}
 {%- else -%}
